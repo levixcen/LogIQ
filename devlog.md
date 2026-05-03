@@ -75,3 +75,41 @@ MITRE ATT&CK mapping, plain language narrative, and recommended next steps.
 - Record demo video
 - Devpost submission form
 
+## Day 9 - May 03 2026
+
+**What I did today:**
+- Redesigned UI to chat interface inspired by real SOC platforms
+- Implemented blue and purple DFIR color theme with black background
+- Added real-time analysis steps panel showing agent reasoning
+- Fixed report formatting to render structured sections with blue headers
+- Added MITRE ATT&CK technique badges with purple styling
+- Implemented follow-up Q&A chat feature connected to real Azure OpenAI
+- Fixed formatChatResponse function scope bug causing chat failures
+- Tested full end-to-end flow: log upload, report generation, follow-up questions
+- Confirmed output matches SANS-style incident response report format
+- Verified agent correctly handles follow-up questions using report context
+
+**What LogIQ can do right now:**
+- Accept .txt and .log files via chat interface
+- Autonomously reason through Windows Event Logs step by step
+- Map findings to MITRE ATT&CK framework with tactic, technique ID, and severity
+- Generate SANS-aligned forensic report with classification, report ID, timeline, narrative
+- Answer follow-up questions about the incident based on report context
+- Respond like a senior forensic analyst to junior analyst questions
+
+**Stack used:**
+- Azure OpenAI GPT-4o via Azure AI Foundry
+- Flask web framework
+- Python agent with chunking and multi-step reasoning
+- Deployed locally, Azure App Service deployment pending
+
+**Remaining:**
+- Architecture diagram
+- Demo video recording
+- Devpost submission
+
+**Reflection:**
+LogIQ is designed for junior forensic analysts in Southeast Asia who lack
+access to senior DFIR expertise. The tool closes that gap by making
+expert-level forensic reasoning accessible through a simple chat interface.
+
