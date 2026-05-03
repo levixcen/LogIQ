@@ -51,19 +51,39 @@ def build_analysis_prompt(log_chunk):
 def build_report_prompt(all_findings):
     return f"""
     You are a senior digital forensic analyst writing a formal investigation report.
-    Based on the following findings, produce a structured report with:
+    Based on the following findings, produce a structured report with exactly these sections:
 
-    1. EXECUTIVE SUMMARY: 2-3 sentences describing what happened
-    2. ATTACK TIMELINE: Chronological list of events with timestamps
-    3. MITRE ATT&CK MAPPING: List of tactics and techniques identified
-    4. NARRATIVE: Plain language explanation of the attack from start to finish
-    5. RECOMMENDED NEXT STEPS: What the investigator should do next
+    CLASSIFICATION: CONFIDENTIAL
+    REPORT ID: [generate a random alphanumeric ID like FR-2026-XXXX]
+    DATE: {__import__('datetime').datetime.now().strftime('%B %d, %Y')}
+    ANALYST: LogIQ Forensic AI Agent
 
-    Findings:
+    EXECUTIVE SUMMARY
+    [2-3 sentences describing what happened]
+
+    ATTACK TIMELINE
+    [Chronological numbered list of events with timestamps]
+
+    MITRE ATT&CK MAPPING
+    [List each finding as: TACTIC | TECHNIQUE ID | TECHNIQUE NAME | SEVERITY]
+
+    NARRATIVE
+    [Plain language explanation of the attack from start to finish]
+
+    RECOMMENDED NEXT STEPS
+    [Numbered list of actions the investigator should take]
+
+    ANALYST NOTES
+    [Any caveats, limitations of the analysis, or areas needing human review]
+
+    Findings to analyze:
     {all_findings}
 
-    Write this so a non-technical manager can understand it but with enough 
-    detail for a junior analyst to act on it.
+    STRICT RULES:
+    - Do not use markdown. No hashtags, no asterisks, no backticks.
+    - Use plain text only with section headers exactly as shown above in capitals.
+    - Write dates, times, and Event IDs clearly.
+    - Write so a non-technical manager understands but a junior analyst can act on it.
     """
 
 def run_agent(log_filepath):
